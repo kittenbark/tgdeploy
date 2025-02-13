@@ -3,8 +3,6 @@
 Usually Telegram bots have alike requirements,
 I somewhat embrace copy+paste method for this case.
 
-Regenerate README.md: `go run ./cmd`.
-
 ## Dockerfile
 
 ```dockerfile
@@ -39,14 +37,28 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # container_name: kittenbark_tg
-    # network_mode: host
-    # env_file:
-    #   - .env
-    #   - ${HOME}/.env
-    # volumes:
-    #   - ${TG_LOCAL_API_STORAGE}:${TG_LOCAL_API_STORAGE}
-    # restart: on-failure
+      args:
+        VERSION_GOLANG: "1.23"
+        VERSION_ALPINE: "3.21"
+    environment:
+      - KITTENBARK_TG_TOKEN
+      #- KITTENBARK_TG_TEST_API_URL
+      #- KITTENBARK_TG_TEST_TOKEN
+      #- KITTENBARK_TG_TEST_CHAT
+      #- KITTENBARK_TG_TEST_DOWNLOAD_TYPE
+      #- KITTENBARK_TG_TEST_ON_ERROR
+      #- KITTENBARK_TG_TEST_SYNCED_HANDLE
+      #- KITTENBARK_TG_TEST_TIMEOUT_HANDLE
+      #- KITTENBARK_TG_TEST_TIMEOUT_POLL
+      #- TG_LOCAL_API_STORAGE
+    #container_name: kittenbark_tg
+    #network_mode: host
+    #env_file:
+    #  - .env
+    #  - ${HOME}/.env
+    #volumes:
+    #  - ${TG_LOCAL_API_STORAGE}:${TG_LOCAL_API_STORAGE}
+    #restart: on-failure
     logging:
       driver: "json-file"
       options:
@@ -59,9 +71,9 @@ services:
         limits:
           cpus: '0.50'
           memory: 512M
-        reservations:
-          cpus: '0.25'
-          memory: 256M
+        #reservations:
+        #cpus: '0.05'
+        #memory: 32M
       restart_policy:
         condition: on-failure
         delay: 5s
