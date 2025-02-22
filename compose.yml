@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VERSION_GOLANG: "1.23"
+        VERSION_GOLANG: "1.24"
         VERSION_ALPINE: "3.21"
     environment:
       - KITTENBARK_TG_TOKEN

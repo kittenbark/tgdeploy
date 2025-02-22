@@ -6,7 +6,7 @@ I somewhat embrace copy+paste method for this case.
 ## Dockerfile
 
 ```dockerfile
-ARG VERSION_GOLANG="1.23"
+ARG VERSION_GOLANG="1.24"
 ARG VERSION_ALPINE="3.21"
 
 FROM golang:${VERSION_GOLANG}-alpine${VERSION_ALPINE} AS builder
@@ -38,7 +38,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VERSION_GOLANG: "1.23"
+        VERSION_GOLANG: "1.24"
         VERSION_ALPINE: "3.21"
     environment:
       - KITTENBARK_TG_TOKEN
