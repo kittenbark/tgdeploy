@@ -31,8 +31,6 @@ services:
         max-size: "10m"
         max-file: "3"
     deploy:
-      mode: replicated
-      replicas: 3
       resources:
         limits:
           cpus: '0.50'
